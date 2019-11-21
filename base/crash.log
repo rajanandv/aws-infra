@@ -1,0 +1,62 @@
+2019/06/02 01:07:23 [INFO] Terraform version: 0.12.0  
+2019/06/02 01:07:23 [INFO] Go runtime version: go1.12.4
+2019/06/02 01:07:23 [INFO] CLI args: []string{"/Users/vaitlar/DJ/software/terraform/terraform", "init"}
+2019/06/02 01:07:23 [DEBUG] Attempting to open CLI config file: /Users/vaitlar/.terraformrc
+2019/06/02 01:07:23 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2019/06/02 01:07:23 [INFO] CLI command args: []string{"init"}
+2019/06/02 01:07:23 [TRACE] ModuleInstaller: installing child modules for . into .terraform/modules
+2019/06/02 01:07:23 [DEBUG] Module installer: begin ca_asg
+2019/06/02 01:07:23 [TRACE] ModuleInstaller: Module installer: ca_asg <nil> already installed in ../modules/autoscaling
+2019/06/02 01:07:23 [DEBUG] Module installer: begin ca_lock_asg
+2019/06/02 01:07:23 [TRACE] ModuleInstaller: Module installer: ca_lock_asg <nil> already installed in ../modules/autoscaling
+2019/06/02 01:07:23 [DEBUG] Module installer: begin ca_svc_elb
+2019/06/02 01:07:23 [TRACE] ModuleInstaller: Module installer: ca_svc_elb <nil> already installed in ../modules/alb
+2019/06/02 01:07:23 [DEBUG] Module installer: begin ca_web_alb
+2019/06/02 01:07:23 [TRACE] ModuleInstaller: Module installer: ca_web_alb <nil> already installed in ../modules/alb
+2019/06/02 01:07:23 [DEBUG] Module installer: begin metadata
+2019/06/02 01:07:23 [TRACE] ModuleInstaller: Module installer: metadata <nil> already installed in .terraform/modules/metadata
+2019/06/02 01:07:23 [DEBUG] Module installer: begin nomenclature
+2019/06/02 01:07:23 [TRACE] ModuleInstaller: Module installer: nomenclature <nil> already installed in .terraform/modules/nomenclature
+2019/06/02 01:07:23 [DEBUG] Module installer: begin stg_svc_asg
+2019/06/02 01:07:23 [TRACE] ModuleInstaller: Module installer: stg_svc_asg <nil> already installed in ../modules/autoscaling
+2019/06/02 01:07:23 [DEBUG] Module installer: begin stg_svc_elb
+2019/06/02 01:07:23 [TRACE] ModuleInstaller: Module installer: stg_svc_elb <nil> already installed in ../modules/alb
+2019/06/02 01:07:23 [TRACE] modsdir: writing modules manifest to .terraform/modules/modules.json
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal SIGSEGV: segmentation violation code=0x1 addr=0x28 pc=0x167a041]
+
+goroutine 1 [running]:
+github.com/hashicorp/go-version.(*Version).String(0x0, 0x199b9b2, 0x2bddd00)
+	/opt/gopath/pkg/mod/github.com/hashicorp/go-version@v1.2.0/version.go:359 +0x51
+github.com/hashicorp/go-version.(*Version).Compare(0x0, 0xc0004e21e0, 0x0)
+	/opt/gopath/pkg/mod/github.com/hashicorp/go-version@v1.2.0/version.go:118 +0x2f
+github.com/hashicorp/go-version.(*Version).Equal(...)
+	/opt/gopath/pkg/mod/github.com/hashicorp/go-version@v1.2.0/version.go:283
+github.com/hashicorp/go-version.constraintEqual(0x0, 0xc0004e21e0, 0x0)
+	/opt/gopath/pkg/mod/github.com/hashicorp/go-version@v1.2.0/constraint.go:142 +0x36
+github.com/hashicorp/go-version.(*Constraint).Check(...)
+	/opt/gopath/pkg/mod/github.com/hashicorp/go-version@v1.2.0/constraint.go:92
+github.com/hashicorp/go-version.Constraints.Check(0xc000580158, 0x1, 0x1, 0x0, 0xc0001ac790)
+	/opt/gopath/pkg/mod/github.com/hashicorp/go-version@v1.2.0/constraint.go:72 +0x5d
+github.com/hashicorp/terraform/configs/configload.(*Loader).moduleWalkerLoad(0xc00057e050, 0xc0005bfe60, 0xc00056a000, 0x4200008, 0x0, 0xb, 0xd2b9ddcaeae64300)
+	/opt/gopath/src/github.com/hashicorp/terraform/configs/configload/loader_load.go:67 +0x286
+github.com/hashicorp/terraform/configs.ModuleWalkerFunc.LoadModule(0xc00014ec10, 0xc0005bfe60, 0x1, 0x1, 0x0, 0x0, 0x0)
+	/opt/gopath/src/github.com/hashicorp/terraform/configs/config_build.go:110 +0x30
+github.com/hashicorp/terraform/configs.buildChildModules(0xc00048f1e0, 0x2bb13e0, 0xc00014ec10, 0x100be98, 0x10, 0x25914e0, 0x1)
+	/opt/gopath/src/github.com/hashicorp/terraform/configs/config_build.go:58 +0x534
+github.com/hashicorp/terraform/configs.BuildConfig(0xc0001bee70, 0x2bb13e0, 0xc00014ec10, 0xc0001bee70, 0x0, 0x0, 0x0)
+	/opt/gopath/src/github.com/hashicorp/terraform/configs/config_build.go:24 +0x71
+github.com/hashicorp/terraform/configs/configload.(*Loader).LoadConfig(0xc00057e050, 0x27b804d, 0x1, 0x0, 0x1, 0xc0004cc380, 0x0)
+	/opt/gopath/src/github.com/hashicorp/terraform/configs/configload/loader_load.go:27 +0xe5
+github.com/hashicorp/terraform/command.(*Meta).loadConfig(0xc00044e9c0, 0x27b804d, 0x1, 0xc0006c3a00, 0x1, 0x1, 0x0)
+	/opt/gopath/src/github.com/hashicorp/terraform/command/meta_config.go:66 +0x132
+github.com/hashicorp/terraform/command.(*InitCommand).Run(0xc00044e9c0, 0xc00000c070, 0x0, 0x0, 0xc0000a0c80)
+	/opt/gopath/src/github.com/hashicorp/terraform/command/init.go:246 +0xc4e
+github.com/mitchellh/cli.(*CLI).Run(0xc0002723c0, 0xc0002723c0, 0xc00026fd90, 0x1)
+	/opt/gopath/pkg/mod/github.com/mitchellh/cli@v1.0.0/cli.go:255 +0x1f1
+main.wrappedMain(0x0)
+	/opt/gopath/src/github.com/hashicorp/terraform/main.go:223 +0xaff
+main.realMain(0x0)
+	/opt/gopath/src/github.com/hashicorp/terraform/main.go:100 +0xb4
+main.main()
+	/opt/gopath/src/github.com/hashicorp/terraform/main.go:36 +0x3b
